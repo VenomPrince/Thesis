@@ -1,0 +1,87 @@
+Thesis topic is 
+    Automated test environment for RIAA amplifier with SCPI commands, Teststand and LabVIEW
+
+Theory: Common SCPI commands, The Standard Commands for Programmable Instrumentation (SCPI) Standard, RIAA amplifier
+
+
+The rough sketch or plan is,
+conrol the power supply or RIAA amplifier with SCPI commands and make a automated program with the help of labVIew for all autmation of powersupply voltage, current etc
+
+Note from teacher was 
+" The first one is related to the Teststand&LabVIEW project you did. I wanted to be able to control the power supply from the LabVIEW program. Unfortunately, it hasn’t got LabVIEW driver but one can send to it SCPI text commands through virtual serial port. This topic is light on the theoretical side (without FFT). On the practical side I was thinking that we could add the oscilloscope. Currently we check maximum and minimum of the output (This was done by us students with the help of this teacher in class like a month agao thats what he is mentioning) but not whether it is actually sinewave and not distorted. We could add FFT into this topic. Visually inspecting whether signal is sinewave is easy but how could we do it from the LabVIEW program. "
+
+we do the FFT with occiloscope ( i do not know what this is i need to see) and after that 
+teststand i guess..
+
+what i have learned so far 
+
+1. SCPI commands to conttol Power supply with Pyytuu 
+(I had to adjust few settings in Pyytu (sorry if speeing is wrong) to make the command line look good enough i will update that detail later)
+My powrsupply was cosume commad so i cound fild this following things 
+" Fantastic work! You've reverse-engineered quite a bit of the command structure of your TENMA 72-13330 programmable power supply. From what you've shared, you've mapped out a large portion of its control protocol. To make this easier to use and remember, here's a structured reference of all the commands you've discovered, along with explanations:
+🧠 TENMA 72-13330 Serial Command Reference
+🔌 Output Control
+Command 	Description
+OUT1:1 	Turns ON channel 1
+OUT1:0 	Turns OFF channel 1
+OUT2:1 	Turns ON channel 2
+OUT2:0 	Turns OFF channel 2
+OUT12:0 	Turns OFF both channels (context-dependent)
+OUT1 ON 	Alternate form, not always valid
+OUT2 OFF 	Alternate form, not always valid
+⚡ Voltage Control
+Command 	Description
+VSET1:<val> 	Sets voltage on channel 1
+VSET2:<val> 	Sets voltage on channel 2
+VOUT1? 	Queries voltage output on channel 1
+VOUT2? 	Queries voltage output on channel 2
+VOUT1 <val> 	Sets output voltage on channel 1 (alt syntax)
+VOUT2 <val> 	Sets output voltage on channel 2
+🔼 Voltage Stepping
+Command 	Description
+VSTEP1:<val> 	Sets voltage step size for channel 1
+VSTEP2:<val> 	Sets voltage step size for channel 2
+VUP1 / VDOWN1 	Step voltage up/down on channel 1
+VUP2 / VDOWN2 	Step voltage up/down on channel 2
+VASTEP1:x,y,z,w 	Advanced stepping (start, stop, step size, interval) for CH1
+VASTEP2:x,y,z,w 	Same for CH2
+VASTOP1 	Stop voltage stepping on CH1
+🔌 Current Control
+Command 	Description
+ISET1:<val> 	Set current limit on channel 1
+ISET2:<val> 	Set current limit on channel 2
+ISET1? / ISET2? 	Query current limit
+IOUT1? 	Measure output current on channel 1
+IOUT2? 	Measure output current on channel 2
+IOUT? 	May return combined current or current on active channel
+🔼 Current Stepping
+Command 	Description
+IASTEP1:x,y,z,w 	Advanced current stepping for CH1 (start, stop, step, interval)
+IASTEP2:x,y,z,w 	Same for CH2
+IASTOP 	Stops current stepping
+🛠 Miscellaneous & Info
+Command 	Description
+*IDN? 	Returns model info and firmware
+*RST 	Resets the device
+BEEP1 	Beeps the device (sometimes unsupported)
+STATUS? 	Sometimes returns junk characters
+ISET? 	May return general or active channel current limit
+🔍 Notes You Discovered (and Are Absolutely Right About)
+
+    Max current is 5.1 A even if you try to set higher.
+
+    Voltage is actively regulated; current is limited (source vs. sink).
+
+    Commands are case-sensitive and space-sensitive.
+
+    Stepping commands (VSTEP, VUP, etc.) are per-channel and need to be defined separately.
+
+    Helpful for gradual increases or test ramps.
+
+"
+
+
+This was ofcourse from chatgpt reply as i wnated to make the text more clear i ust copide all my tests and gave it to chagpt
+I would need more infomation or the RIAA board itself to go anyfurther i think and tecaher will provide me the requiremnsts for the powersuppy that neeeds to be done in RIAA board, atleast that what i think, I need to o to campus and have acces o all those powersuppy, COM wire, RIAA boards OCCiloscope for doing any furether.
+
+At least i am upto here..
